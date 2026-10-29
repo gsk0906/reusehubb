@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Auth, Sell, and Form Styles
+   ========================================================================== */
+
+/* Auth Pages (Login / Register) */
+.auth-page {
+  min-height: calc(100vh - var(--nav-height) - 150px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.auth-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 440px;
+  padding: 2.5rem;
+}
+
+.auth-card-wide {
+  max-width: 620px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-icon-badge {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.auth-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-footer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.auth-link {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Sell Item Page & Live Preview
+   ========================================================================== */
+.sell-page {
+  padding: 3rem 1.5rem 5rem;
+}
+
+.sell-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.sell-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+.header-badge {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.sell-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.sell-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.sell-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.sell-form-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.sample-img-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sample-label {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.btn-sample {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.btn-sample:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+/* Live Preview Sidebar */
+.sell-preview-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.preview-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.preview-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.preview-card-wrap {
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.preview-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  background-color: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .sell-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sell-preview-sidebar {
+    position: static;
+  }
+}

@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Global Layout & Scrollbar Locking
+   Prevents layout shifts and flickering when scrollbars or dynamic content appear
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
