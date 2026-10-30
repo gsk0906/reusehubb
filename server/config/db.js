@@ -12,7 +12,8 @@ const __dirname = path.dirname(__filename);
 
 // Cloud SSL configuration
 const buildSslConfig = () => {
-  if (process.env.DB_SSL === 'true' || process.env.DB_SSL === '1') {
+  const isCloudHost = process.env.DB_HOST && !['localhost', '127.0.0.1'].includes(process.env.DB_HOST.trim());
+  if (process.env.DB_SSL === 'true' || process.env.DB_SSL === '1' || isCloudHost) {
     if (process.env.DB_SSL_CA) {
       return {
         ca: process.env.DB_SSL_CA,
