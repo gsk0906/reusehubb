@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { resolveImageUrl } from '../utils/imageUrl';
 
-// Local inline SVG data URI fallback placeholder to prevent external network failure
-export const LOCAL_FALLBACK_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
-  <rect width="400" height="300" fill="#f1f5f9"/>
-  <g fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="130" y="85" width="140" height="105" rx="10" fill="#e2e8f0"/>
-    <circle cx="200" cy="138" r="28" fill="#cbd5e1" stroke="#94a3b8"/>
-    <circle cx="242" cy="108" r="4" fill="#94a3b8"/>
-    <path d="M165 85 L175 72 H225 L235 85 Z" fill="#cbd5e1"/>
-  </g>
-  <text x="200" y="222" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#64748b">No Image Available</text>
-  <text x="200" y="242" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">ReUseHub Campus Market</text>
-</svg>
-`)}`;
+// High-fidelity inline SVG Base64 fallback placeholder (avoids MIME/character encoding issues across all browsers)
+export const LOCAL_FALLBACK_SVG =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMzAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2YxZjVmOSIvPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk0YTNiOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHJlY3QgeD0iMTMwIiB5PSI4NSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxMDUiIHJ4PSIxMCIgZmlsbD0iI2UyZThmMCIvPgogICAgPGNpcmNsZSBjeD0iMjAwIiBjeT0iMTM4IiByPSIyOCIgZmlsbD0iI2NiZDVlMSIgc3Ryb2tlPSIjOTRhM2I4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyNDIiIGN5PSIxMDgiIHI9IjQiIGZpbGw9IiM5NGEzYjgiLz4KICAgIDxwYXRoIGQ9Ik0xNjUgODUgTDE3NSA3MiBIMjI1IEwyMzUgODUgWiIgZmlsbD0iI2NiZDVlMSIvPgogIDwvZz4KICA8dGV4dCB4PSIyMDAiIHk9IjIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ii1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgUm9ib3RvLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjNjQ3NDhiIj5DYW1wdXMgTWFya2V0cGxhY2UgSXRlbTwvdGV4dD4KICA8dGV4dCB4PSIyMDAiIHk9IjI0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ii1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgUm9ib3RvLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjOTRhM2I4Ij5SZVVzZUh1YjwvdGV4dD4KPC9zdmc+';
 
 /**
  * Reusable item image component with automatic URL resolution,
- * lazy-loading, referrer policy protection, and infinite error loop guard.
+ * lazy-loading, and rock-solid fallback on failure.
  */
 const ItemImage = ({ src, alt = 'Campus marketplace item', className = '', ...props }) => {
   const resolved = resolveImageUrl(src);
@@ -45,7 +34,6 @@ const ItemImage = ({ src, alt = 'Campus marketplace item', className = '', ...pr
       src={currentSrc}
       alt={alt}
       className={className}
-      referrerPolicy="no-referrer"
       loading="lazy"
       onError={handleError}
       {...props}

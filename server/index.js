@@ -38,7 +38,8 @@ if (!fs.existsSync(uploadsDir)) {
 // -----------------------------------------------------------------------------
 app.use(
   helmet({
-    crossOriginResourcePolicy: false, // Allows cross-origin image embedding
+    contentSecurityPolicy: false, // Prevents CSP from blocking external images (Unsplash, CDNs, etc.)
+    crossOriginResourcePolicy: { policy: 'cross-origin' }, // Allows cross-origin image & asset embedding
     crossOriginEmbedderPolicy: false,
   })
 );

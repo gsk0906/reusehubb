@@ -25,6 +25,10 @@ export const resolveImageUrl = (src) => {
 
   // Direct remote protocols or inline data URIs
   if (/^(https?:\/\/|data:)/i.test(target)) {
+    // If we are currently browsing over HTTPS, upgrade http:// images to https:// to prevent Mixed Content blocks
+    if (typeof window !== 'undefined' && window.location.protocol === 'https:' && target.startsWith('http://')) {
+      return 'https://' + target.slice(7);
+    }
     return target;
   }
 
